@@ -3,8 +3,8 @@
 ## Propostas de projeto
 
 - Nome do sistema Ex:(Sistema para Mecânica)
-  - Funcionalidade 1
-  - Funcionalidade 2
+  - Funcionalidade 1 Cadastrar dados do Cliente
+  - Funcionalidade 2 Cadastrar veículos
   - Funcionalidade 3
 
 
