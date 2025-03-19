@@ -1,8 +1,30 @@
-package br.univille;
+package br.univille.entity;
 public class Pessoa {
     //atributo (variável)
+    private long id;
     private String nome;
+    private String endereco;
 
+    private Cidade cidade;
+    
+    public Cidade getCidade() {
+        return cidade;
+    }
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
+    public String getEndereco() {
+        return endereco;
+    }
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
     //Construtor (mesmo nome da classe, não tem retorno)
     public Pessoa(String nome) {
         //this referencia a classe
@@ -25,7 +47,7 @@ public class Pessoa {
     @Override
     public String toString(){
         
-        return super.toString() + getNome();
+        return getNome();
     }
     
 }

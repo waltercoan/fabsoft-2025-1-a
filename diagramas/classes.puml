@@ -1,0 +1,34 @@
+@startuml
+skinparam classAttributeIconSize 0
+caption Diagrama de entidades
+namespace br.univille.entity {
+    class Pessoa {
+        - id:long
+        - nome:String
+        - endereco:String
+
+        + getId():long
+        + setId(id:long):void
+        + getNome():String
+        + setNome(nome:String):void
+        + getEndereco():String
+        + setEndereco(endereco:String ):void
+        
+    }
+    class Cidade {
+        - long id
+        - String nome
+        - String estado
+
+        + getId():long
+        + setId(id:long):void
+        + getNome():String
+        + setNome(nome:String):void
+        + getEstado():String
+        + setEstado(estado:String ):void
+    }
+
+    Pessoa "*" -> "1" Cidade
+
+}
+@enduml
