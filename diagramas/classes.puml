@@ -27,7 +27,14 @@ namespace br.univille.entity {
         + getEstado():String
         + setEstado(estado:String ):void
     }
+    class Pokemon {
+        - String nome
+        + Pokemon(nome:String)
+        + toString():String
+    }
 
+    
+    Pessoa "-listaPokemon 1" -> "*" Pokemon
     Pessoa "*" -> "1" Cidade
 
 }
