@@ -1,0 +1,105 @@
+@startuml
+skinparam classAttributeIconSize 0
+caption Diagrama de Classes - br.univille.projfabsoft.entity
+
+package br.univille.projfabsoft.entity {
+    class Cliente {
+        - id: Long
+        - nome: String
+        - endereco: String
+        - telefone: String
+        - email: String
+        + getId(): Long
+        + setId(id: Long): void
+        + getNome(): String
+        + setNome(nome: String): void
+        + getEndereco(): String
+        + setEndereco(endereco: String): void
+        + getTelefone(): String
+        + setTelefone(telefone: String): void
+        + getEmail(): String
+        + setEmail(email: String): void
+    }
+
+    class Carro {
+        - id: Long
+        - marca: String
+        - modelo: String
+        - placa: String
+        - cliente: Cliente
+        + getId(): Long
+        + setId(id: Long): void
+        + getMarca(): String
+        + setMarca(marca: String): void
+        + getModelo(): String
+        + setModelo(modelo: String): void
+        + getPlaca(): String
+        + setPlaca(placa: String): void
+        + getCliente(): Cliente
+        + setCliente(cliente: Cliente): void
+    }
+
+    class Revisao {
+        - id: Long
+        - cliente: Cliente
+        - carro: Carro
+        - dataEntrada: String
+        - dataSaida: String
+        - valor: Double
+        - pecas: List<Peca>
+        - servicos: List<Servico>
+        + getId(): Long
+        + setId(id: Long): void
+        + getCliente(): Cliente
+        + setCliente(cliente: Cliente): void
+        + getCarro(): Carro
+        + setCarro(carro: Carro): void
+        + getDataEntrada(): String
+        + setDataEntrada(dataEntrada: String): void
+        + getDataSaida(): String
+        + setDataSaida(dataSaida: String): void
+        + getValor(): Double
+        + setValor(valor: Double): void
+        + getPecas(): List<Peca>
+        + setPecas(pecas: List<Peca>): void
+        + getServicos(): List<Servico>
+        + setServicos(servicos: List<Servico>): void
+    }
+
+    class Peca {
+        - id: Long
+        - codigo: String
+        - nome: String
+        - precoUnitario: Double
+        + getId(): Long
+        + setId(id: Long): void
+        + getCodigo(): String
+        + setCodigo(codigo: String): void
+        + getNome(): String
+        + setNome(nome: String): void
+        + getPrecoUnitario(): Double
+        + setPrecoUnitario(precoUnitario: Double): void
+    }
+
+    class Servico {
+        - id: Long
+        - nomeFuncionario: String
+        - quantidadeHoras: Integer
+        - valor: Double
+        + getId(): Long
+        + setId(id: Long): void
+        + getNomeFuncionario(): String
+        + setNomeFuncionario(nomeFuncionario: String): void
+        + getQuantidadeHoras(): Integer
+        + setQuantidadeHoras(quantidadeHoras: Integer): void
+        + getValor(): Double
+        + setValor(valor: Double): void
+    }
+
+    Cliente "1" -- "0..*" Carro
+    Cliente "1" -- "0..*" Revisao
+    Carro "1" -- "0..*" Revisao
+    Revisao "1" -- "0..*" Peca
+    Revisao "1" -- "0..*" Servico
+}
+@enduml

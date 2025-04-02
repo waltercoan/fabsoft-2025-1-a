@@ -11,6 +11,7 @@
 
     <modules>
         <module>revisao_walter</module>
+        <module>projfabsoft</module>
     </modules>
 
 </project>

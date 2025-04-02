@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ProjfabsoftApplication<projfabsoft>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.univille.projfabsoft.ProjfabsoftApplication",
+            "projectName": "projfabsoft",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
