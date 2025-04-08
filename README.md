@@ -99,5 +99,26 @@ git checkout -b branch-seunome
 ```bash
 @workspace por favor, gere um diagrama uml utilizando o padrão plantuml para as classes no pacote br.univille.projfabsoft.entity
 ```
-
+## Diagrama de classes Entidade (Domínio)
 ![Diagrama de Entidades](./diagramas/png/diagramadeclasses.png)
+
+## Prompts Aula 08/04/2025
+- Encontrar as entidades nas histórias de usuário
+```bash
+@workspace #sym:## Histórias de Usuário quais são as entidades
+```
+- Gerar as classes java das entidades
+```bash
+@workspace por favor, crie as classe em java no pacote entity para representar as entidades
+```
+- Gerar o Diagrama de Classes de Entidade (Domínio)
+```bash
+@workspace por favor gere um diagrama uml no padrão plantuml das classes do pacote br.univille.projfabsoft
+```
+- Instalar a extensão [PlantUML](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml)
+
+## Clean Architecture
+
+[Livro Arquitetura Limpa](https://integrada.minhabiblioteca.com.br/reader/books/9788550808161/pageid/0)
+
+![Arquitetura Limpa](./diagramas/CleanArchitecture.jpg)
