@@ -2,14 +2,31 @@ package br.univille.projfabsoft.entity;
 
 import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+
+@Entity
 public class Revisao {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
     private Cliente cliente;
+    @ManyToOne
     private Carro carro;
     private String dataEntrada;
     private String dataSaida;
     private Double valor;
+    @OneToMany
+    @JoinColumn(name = "revisao_id")
     private List<Peca> pecas;
+    @OneToMany
+    @JoinColumn(name = "revisao_id")
     private List<Servico> servicos;
 
     // Getters e Setters
