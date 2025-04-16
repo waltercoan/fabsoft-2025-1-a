@@ -15,7 +15,7 @@ import jakarta.persistence.OneToMany;
 public class Revisao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     private Cliente cliente;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
@@ -31,11 +31,11 @@ public class Revisao {
     private List<Servico> servicos;
 
     // Getters e Setters
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

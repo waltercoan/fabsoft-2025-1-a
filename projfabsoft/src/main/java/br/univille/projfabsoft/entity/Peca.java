@@ -9,17 +9,17 @@ import jakarta.persistence.Id;
 public class Peca {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private String codigo;
     private String nome;
     private Double precoUnitario;
 
     // Getters e Setters
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
