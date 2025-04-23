@@ -1,2 +1,16 @@
 ### API CLIENTE GET
 GET http://localhost:8080/api/v1/clientes
+
+
+
+### API CLIENTE POST
+POST http://localhost:8080/api/v1/clientes
+Content-Type: application/json
+
+{
+    "nome": "zezinho",
+    "endereco": "rua lalala 100",
+    "email": "ze@ze.com.br",
+    "telefone": "5555-1234",
+    "dataNascimento": "2025-04-22"
+}
