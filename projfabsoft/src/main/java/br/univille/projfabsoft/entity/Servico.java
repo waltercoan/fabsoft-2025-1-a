@@ -14,15 +14,16 @@ public class Servico {
     private Integer quantidadeHoras;
     private Double valor;
 
-    // Getters e Setters
-    public long getId() {
-        return id;
+    public Servico() {
+        
     }
-
-    public void setId(long id) {
+    public Servico(long id, String nomeFuncionario, Integer quantidadeHoras, Double valor ) {
         this.id = id;
+        this.nomeFuncionario = nomeFuncionario;
+        this.quantidadeHoras = quantidadeHoras;
+        this.valor = valor;
     }
-
+    // Getters e Setters
     public String getNomeFuncionario() {
         return nomeFuncionario;
     }
@@ -45,5 +46,13 @@ public class Servico {
 
     public void setValor(Double valor) {
         this.valor = valor;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

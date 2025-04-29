@@ -13,16 +13,17 @@ public class Peca {
     private String codigo;
     private String nome;
     private Double precoUnitario;
+    public Peca() {
+        
+    }
+    public Peca(long id, String codigo, String nome, Double precoUnitario) {
+        this.id = id;
+        this.codigo = codigo;
+        this.nome = nome;
+        this.precoUnitario = precoUnitario;
+    }
 
     // Getters e Setters
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getCodigo() {
         return codigo;
     }
@@ -45,5 +46,13 @@ public class Peca {
 
     public void setPrecoUnitario(Double precoUnitario) {
         this.precoUnitario = precoUnitario;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

@@ -1,5 +1,6 @@
 package br.univille.projfabsoft.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -16,19 +17,19 @@ public class Revisao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne
     private Cliente cliente;
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne
     private Carro carro;
     private String dataEntrada;
     private String dataSaida;
     private Double valor;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "revisao_id")
-    private List<Peca> pecas;
+    @JoinColumn(name = "id_revisao")
+    private List<Peca> pecasTrocadas = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "revisao_id")
-    private List<Servico> servicos;
+    @JoinColumn(name = "id_revisao")
+    private List<Servico> servicosRealizados = new ArrayList<>();
 
     // Getters e Setters
     public long getId() {
@@ -79,19 +80,19 @@ public class Revisao {
         this.valor = valor;
     }
 
-    public List<Peca> getPecas() {
-        return pecas;
+    public List<Peca> getPecasTrocadas() {
+        return pecasTrocadas;
     }
 
-    public void setPecas(List<Peca> pecas) {
-        this.pecas = pecas;
+    public void setPecasTrocadas(List<Peca> pecasTrocadas) {
+        this.pecasTrocadas = pecasTrocadas;
     }
 
-    public List<Servico> getServicos() {
-        return servicos;
+    public List<Servico> getServicosRealizados() {
+        return servicosRealizados;
     }
 
-    public void setServicos(List<Servico> servicos) {
-        this.servicos = servicos;
+    public void setServicosRealizados(List<Servico> servicosRealizados) {
+        this.servicosRealizados = servicosRealizados;
     }
 }

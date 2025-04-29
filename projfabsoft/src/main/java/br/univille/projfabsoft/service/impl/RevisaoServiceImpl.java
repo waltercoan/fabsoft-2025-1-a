@@ -5,29 +5,28 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.univille.projfabsoft.entity.Cliente;
-import br.univille.projfabsoft.repository.ClienteRepository;
-import br.univille.projfabsoft.service.ClienteService;
+import br.univille.projfabsoft.entity.Revisao;
+import br.univille.projfabsoft.repository.RevisaoRepository;
+import br.univille.projfabsoft.service.RevisaoService;
 
 @Service
-public class ClienteServiceImpl implements ClienteService {
-    
+public class RevisaoServiceImpl implements RevisaoService{
+
     @Autowired
-    private ClienteRepository repository;
+    private RevisaoRepository repository;
 
     @Override
-    public Cliente save(Cliente cliente) {
-        repository.save(cliente);
-        return cliente;
+    public Revisao save(Revisao revisao) {
+        return repository.save(revisao);
     }
 
     @Override
-    public List<Cliente> getAll() {
+    public List<Revisao> getAll() {
         return repository.findAll();
     }
 
     @Override
-    public Cliente getById(Long id) {
+    public Revisao getById(Long id) {
         var retorno = repository.findById(id);
         if(retorno.isPresent())
             return retorno.get();
@@ -35,7 +34,7 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Cliente delete(Long id) {
+    public Revisao delete(Long id) {
         var cliente = getById(id);
         if(cliente != null)
             repository.deleteById(id);

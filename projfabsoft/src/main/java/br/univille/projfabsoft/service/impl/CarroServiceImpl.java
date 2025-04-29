@@ -5,29 +5,29 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.univille.projfabsoft.entity.Cliente;
-import br.univille.projfabsoft.repository.ClienteRepository;
-import br.univille.projfabsoft.service.ClienteService;
+import br.univille.projfabsoft.entity.Carro;
+import br.univille.projfabsoft.repository.CarroRepository;
+import br.univille.projfabsoft.service.CarroService;
 
 @Service
-public class ClienteServiceImpl implements ClienteService {
+public class CarroServiceImpl implements CarroService{
     
     @Autowired
-    private ClienteRepository repository;
-
+    private CarroRepository repository;
+    
     @Override
-    public Cliente save(Cliente cliente) {
-        repository.save(cliente);
-        return cliente;
+    public Carro save(Carro carro) {
+        repository.save(carro);
+        return carro;
     }
 
     @Override
-    public List<Cliente> getAll() {
+    public List<Carro> getAll() {
         return repository.findAll();
     }
 
     @Override
-    public Cliente getById(Long id) {
+    public Carro getById(Long id) {
         var retorno = repository.findById(id);
         if(retorno.isPresent())
             return retorno.get();
@@ -35,7 +35,7 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Cliente delete(Long id) {
+    public Carro delete(Long id) {
         var cliente = getById(id);
         if(cliente != null)
             repository.deleteById(id);

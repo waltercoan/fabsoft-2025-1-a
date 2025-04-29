@@ -15,8 +15,17 @@ public class Carro {
     private String marca;
     private String modelo;
     private String placa;
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH})
     private Cliente cliente;
+
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
     // Getters e Setters
     public long getId() {
@@ -49,13 +58,5 @@ public class Carro {
 
     public void setPlaca(String placa) {
         this.placa = placa;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 }

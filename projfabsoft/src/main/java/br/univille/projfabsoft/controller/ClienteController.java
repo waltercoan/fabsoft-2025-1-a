@@ -28,12 +28,11 @@ public class ClienteController {
     public ResponseEntity<List<Cliente>> getClientes(){
         var listaClientes = service.getAll();
 
-        return new ResponseEntity<List<Cliente>>(listaClientes, 
-                    HttpStatus.OK);
+        return new ResponseEntity<List<Cliente>>(listaClientes, HttpStatus.OK);
     }
+
     @PostMapping
-    public ResponseEntity<Cliente> 
-            postCliente(@RequestBody Cliente cliente){
+    public ResponseEntity<Cliente> postCliente(@RequestBody Cliente cliente){
         if(cliente == null){
             return ResponseEntity.badRequest().build();
         }
@@ -46,7 +45,8 @@ public class ClienteController {
     @PutMapping("/{id}")
     public ResponseEntity<Cliente> 
         putCliente(@PathVariable long id,
-                   @RequestBody Cliente cliente){
+            @RequestBody Cliente cliente){
+        
         if(id <= 0 || cliente == null){
             return ResponseEntity.badRequest().build();
         }
@@ -54,30 +54,34 @@ public class ClienteController {
         if(clienteAntigo == null){
             return ResponseEntity.notFound().build();
         }
-
         clienteAntigo.setNome(cliente.getNome());
         clienteAntigo.setEndereco(cliente.getEndereco());
         clienteAntigo.setTelefone(cliente.getTelefone());
         clienteAntigo.setEmail(cliente.getEmail());
         clienteAntigo.setDataNascimento(cliente.getDataNascimento());
-     
+
         service.save(clienteAntigo);
-        return new ResponseEntity<Cliente>(clienteAntigo, HttpStatus.OK);
+        return new ResponseEntity<Cliente>(clienteAntigo,
+                HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Cliente> deleteCliente(@PathVariable long id){
-        if(id <= 0){
+        if(id <=0){
             return ResponseEntity.badRequest().build();
         }
-        var clienteExcluir = service.getById(id);
-        if(clienteExcluir == null){
+
+        var clienteExcluido = service.getById(id);
+        if(clienteExcluido == null){
             return ResponseEntity.notFound().build();
         }
-
         service.delete(id);
-        return new ResponseEntity<Cliente>(clienteExcluir, HttpStatus.OK);
 
+        return new ResponseEntity<Cliente>(clienteExcluido,
+                HttpStatus.OK);
     }
+
+
+
 
 }
