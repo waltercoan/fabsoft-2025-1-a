@@ -337,3 +337,125 @@ public class WebConfig implements WebMvcConfigurer  {
     }
 }
 ```
+## Criação da tela de cadastro de clientes
+
+- Alterar o arquivo /src/app/cliente/cliente.component.ts para importar o RouterLink
+
+```ts
+import { RouterLink } from '@angular/router';
+
+@Component({
+  selector: 'app-cliente',
+  imports: [HttpClientModule, CommonModule, RouterLink],
+  templateUrl: './cliente.component.html',
+  styleUrl: './cliente.component.css',
+  providers: [ClienteService]
+})
+```
+- Alterar o arquivo /src/app/cliente/cliente.component.html criar o botao para a nova tela de formulário
+
+```html
+<a routerLink="/clientes/novo" class="btn btn-primary">Novo</a>
+```
+
+- Alterar o arquivo /app/app.routes.ts para registrar a rota da nova tela
+
+```ts
+import { Routes } from '@angular/router';
+import { ClienteComponent } from './cliente/cliente.component';
+import { FormClienteComponent } from './form-cliente/form-cliente.component';
+
+export const routes: Routes = [
+    { path: 'clientes', component: ClienteComponent},
+    { path: 'clientes/novo', component: FormClienteComponent},
+];
+```
+
+- Abrir o console e digitar o comando para criar um novo componente que será a tela de cadastro
+
+```bash
+ng generate component form-cliente
+```
+
+- Alterar o arquivo /app/service/cliente.service.ts para incluir o método de salvar o cliente e chamar o endpoint POST da API
+
+```ts
+import { Injectable } from '@angular/core';
+import { Cliente } from '../model/cliente';
+import { HttpClient } from '@angular/common/http';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ClienteService {
+  apiURL = "http://localhost:8080/api/v1/clientes";
+  
+  constructor(private http:HttpClient) { }
+
+  getClientes(){
+    return this.http.get<Cliente[]>(this.apiURL);
+  }
+
+  saveCliente(cliente:Cliente){
+    return this.http.post(this.apiURL,cliente);
+  }
+
+}
+``` 
+
+- Alterar o codigo do arquivo /app/form-cliente/form-cliente.component.ts para importar os componentes e chamar o método salvar do serviço
+
+```ts
+import { Component } from '@angular/core';
+import { Cliente } from '../model/cliente';
+import { ClienteService } from '../service/cliente.service';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-form-cliente',
+  imports: [HttpClientModule, CommonModule, FormsModule],
+  templateUrl: './form-cliente.component.html',
+  styleUrl: './form-cliente.component.css',
+  providers: [ClienteService, Router]
+})
+export class FormClienteComponent {
+    cliente: Cliente = new Cliente();
+
+    constructor(
+      private clienteService:ClienteService,
+      private router:Router
+    ){}
+
+    salvar(){
+      this.clienteService.saveCliente(this.cliente)
+        .subscribe(resultado => {
+            this.router.navigate(['clientes']);
+        });
+    }
+}
+```
+
+- Alterar o codigo do arquivo /app/form-cliente/form-cliente.component.html para desenhar a tela
+
+```ts
+<main class="container">
+    <h2>Cliente</h2>
+    <div class="card">
+        <div class="card-body">
+            <div class="form-group">
+                <label for="txtNome">Nome</label>    
+                <input type="text" 
+                    [(ngModel)]="cliente.nome"
+                    class="form-control"
+                    id="txtNome">
+            </div>
+        </div>
+        <button (click)="salvar()" 
+        class="btn btn-primary">Salvar</button>
+    </div>
+</main>
+```
