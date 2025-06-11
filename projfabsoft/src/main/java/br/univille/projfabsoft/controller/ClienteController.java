@@ -31,6 +31,13 @@ public class ClienteController {
         return new ResponseEntity<List<Cliente>>(listaClientes, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")	
+    public ResponseEntity<Cliente> getClienteId(@PathVariable Long id){
+        var cliente = service.getById(id);
+
+        return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Cliente> postCliente(@RequestBody Cliente cliente){
         if(cliente == null){

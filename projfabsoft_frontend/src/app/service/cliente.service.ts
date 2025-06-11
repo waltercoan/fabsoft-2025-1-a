@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ClienteService {
+ 
   apiURL = "http://localhost:8080/api/v1/clientes";
 
   constructor(private http:HttpClient) { }
@@ -15,6 +16,12 @@ export class ClienteService {
      return this.http.get<Cliente[]>(this.apiURL);
   }
   saveCliente(cliente:Cliente){
+    if(cliente.id){
+      return this.http.put(this.apiURL + '/' + cliente.id, cliente);
+    }
     return this.http.post(this.apiURL,cliente);
+  }
+  getClienteById(id: any) {
+    return this.http.get<Cliente>(this.apiURL + '/' + id);
   }
 }
