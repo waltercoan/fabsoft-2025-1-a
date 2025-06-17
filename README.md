@@ -127,13 +127,13 @@ git checkout -b branch-seunome
 
 - Criar o projeto Angular
 ```bash
-ng new projfabsoft-frontend
+ng new projfabsoft_frontend
 ```
 
 - Acessar a pasta do projeto
 
 ```bash
-cd projfabsoft-frontend
+cd projfabsoft_frontend
 ```
 
 - Executar o servidor do Angular
@@ -149,7 +149,7 @@ ng serve
 npm install bootstrap
 ```
 
-- No arquivo angular.json [🔗](./projfabsoft-frontend/angular.json)
+- No arquivo angular.json [🔗](./projfabsoft_frontend/angular.json)
 
 ```json
 "styles": [
@@ -169,7 +169,7 @@ npm install bootstrap
 ng generate component cliente
 ```
 
-- Criando a interface gráfica HTML /src/app/cliente/cliente.component.html [🔗](./projfabsoft-frontend/src/app/cliente/cliente.component.html)
+- Criando a interface gráfica HTML /src/app/cliente/cliente.component.html [🔗](./projfabsoft_frontend/src/app/cliente/cliente.component.html)
 
 ```html
 <main class="container">
@@ -185,7 +185,7 @@ ng generate component cliente
 ng generate class model/cliente
 ```
 
-- Código da classe /src/app/model/cliente.ts [🔗](./projfabsoft-frontend/src/app/model/cliente.ts)
+- Código da classe /src/app/model/cliente.ts [🔗](./projfabsoft_frontend/src/app/model/cliente.ts)
 
 ```ts
 export class Cliente {
@@ -198,7 +198,7 @@ export class Cliente {
 }
 ```
 
-- Configurar o arquivo tsconfig.json [🔗](./projfabsoft-frontend/tsconfig.json) para suportar a não inicialização dos atributos 
+- Configurar o arquivo tsconfig.json [🔗](./projfabsoft_frontend/tsconfig.json) para suportar a não inicialização dos atributos 
 
 ```bash
 "compilerOptions": {
@@ -212,7 +212,7 @@ export class Cliente {
 ng generate service service/cliente
 ```
 
-- Codigo do serviço /src/app/service/cliente.service.ts [🔗](./projfabsoft-frontend/src/app/service/cliente.service.ts)
+- Codigo do serviço /src/app/service/cliente.service.ts [🔗](./projfabsoft_frontend/src/app/service/cliente.service.ts)
 
 ```ts
 import { Injectable } from '@angular/core';
@@ -235,13 +235,13 @@ export class ClienteService {
 }
 ```
 
-- Alterar o arquivo /src/app/app.component.html [🔗](./projfabsoft-frontend/src/app/app.component.html) para gerar apenas a tela dos componentes
+- Alterar o arquivo /src/app/app.component.html [🔗](./projfabsoft_frontend/src/app/app.component.html) para gerar apenas a tela dos componentes
 
 ```html
 <router-outlet />
 ```
 
-- Modificar o código do componente /src/app/cliente/cliente.component.ts [🔗](./projfabsoft-frontend/src/app/cliente/cliente.component.ts) para chamar o serviço e guardar a lista de clientes em um atributo
+- Modificar o código do componente /src/app/cliente/cliente.component.ts [🔗](./projfabsoft_frontend/src/app/cliente/cliente.component.ts) para chamar o serviço e guardar a lista de clientes em um atributo
 
 ```ts
 import { Component } from '@angular/core';
@@ -271,7 +271,7 @@ export class ClienteComponent {
 }
 ```
 
-- Modificar o arquivo /src/app/cliente/cliente.component.html [🔗](./projfabsoft-frontend/src/app/cliente/cliente.component.html) para desenhar a tabela de clientes
+- Modificar o arquivo /src/app/cliente/cliente.component.html [🔗](./projfabsoft_frontend/src/app/cliente/cliente.component.html) para desenhar a tabela de clientes
 
 ```html
 <main class="container">
@@ -291,7 +291,7 @@ export class ClienteComponent {
 </main>
 ```
 
-- Modificar o arquivo /src/app/app.routes.ts [🔗](./projfabsoft-frontend/src/app/app.routes.ts) para incluir a rota para o componente
+- Modificar o arquivo /src/app/app.routes.ts [🔗](./projfabsoft_frontend/src/app/app.routes.ts) para incluir a rota para o componente
 
 ```ts
 import { Routes } from '@angular/router';
@@ -599,4 +599,105 @@ export class FormClienteComponent {
     }
     return this.http.post(this.apiURL,cliente);
   }
+```
+
+## Funcionalidade de EXCLUIR
+
+-  Abrir o terminal e digitar o comando abaixo para instalar a definição de tipos do bootstrap no typescript
+
+```bash
+npm i @types/bootstrap
+```
+
+- Alterar o arquivo [cliente.service.ts](./projfabsoft_frontend/src/app/service/cliente.service.ts) para incluir a função de excluir cliente e chamar o método delete da API no backend
+
+```ts
+excluirCliente(id: any){
+  return this.http.delete<Cliente>(this.apiURL + '/' + id);
+}
+```
+
+- Alterar o arquivo [cliente.component.html](./projfabsoft_frontend/src/app/cliente/cliente.component.html) para incluir o código HTML necessário para que o bootstrap crie uma janela de confirmação (MODAL)
+
+```html
+<div class="modal fade" #myModal tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir cliente</h5>
+            </div>
+            <div class="modal-body">
+            Confirma a exclusão do cliente?
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="fecharConfirmacao()">Cancelar</button>
+            <button type="button" class="btn btn-primary" (click)="confirmarExclusao()">Sim</button>
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+- Alterar o arquivo [cliente.component.html](./projfabsoft_frontend/src/app/cliente/cliente.component.html) para incluir o código HTML necessário para que o botao excluir seja apresentado em cada cliente
+
+```html
+<td><a (click)="alterar(umCliente)" 
+    class="btn btn-secondary">Alterar</a>
+    <!--botao excluir -->
+    <a (click)="abrirConfirmacao(umCliente)" 
+    class="btn btn-danger">Excluir</a>
+    <!--botao excluir -->
+</td>
+```
+
+
+- Alterar o arquivo [cliente.component.ts](./projfabsoft_frontend/src/app/cliente/cliente.component.ts) para importar os seguintes objetos
+
+```ts
+// MANTER OS IMPORTS JA EXISTENTES
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import * as bootstrap from 'bootstrap';
+```
+
+- Ainda no arquivo [cliente.component.ts](./projfabsoft_frontend/src/app/cliente/cliente.component.ts) criar duas variáveis para encontrar a referencia da janela de confirmação modal do bootstrap
+
+```ts
+@ViewChild('myModal') modalElement!: ElementRef;
+private modal!: bootstrap.Modal;
+
+private clienteSelecionado!: Cliente;
+```
+
+- Ainda no arquivo [cliente.component.ts](./projfabsoft_frontend/src/app/cliente/cliente.component.ts) criar o código das funções para abrir e fechar a janela de confirmação
+
+```ts
+abrirConfirmacao(cliente:Cliente) {
+    this.clienteSelecionado = cliente;
+    this.modal = new bootstrap.Modal(this.modalElement.nativeElement);
+    this.modal.show();
+}
+
+fecharConfirmacao() {
+  this.modal.hide();
+}
+```
+
+- Ainda no arquivo [cliente.component.ts](./projfabsoft_frontend/src/app/cliente/cliente.component.ts) criar o código da função confirmar exclusão que deverá chamar o service para excluir o registro e em caso de sucesso, fechar a janela e buscar novamente todos os clientes no backend para atualizar a tabela.
+
+```ts
+confirmarExclusao() {
+    this.clienteService.excluirCliente(this.clienteSelecionado.id).subscribe(
+        () => {
+            this.fecharConfirmacao();
+            this.clienteService.getClientes().subscribe(
+              clientes => {
+                this.listaClientes = clientes;
+              }
+            );
+        },
+        error => {
+            console.error('Erro ao excluir cliente:', error);
+        }
+    );
+}
 ```
