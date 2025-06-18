@@ -16,7 +16,7 @@
                 <td>{{umCarro.marca}}</td>
                 <td>{{umCarro.modelo}}</td>
                 <td>{{umCarro.placa}}</td>
-                <td>{{umCarro.cliente!.nome}}</td>
+                <td>{{umCarro.cliente !== null ? umCarro.cliente.nome : '' }}</td>
                 <td><a (click)="alterar(umCarro)" 
                     class="btn btn-secondary">Alterar</a>
                     &nbsp;
