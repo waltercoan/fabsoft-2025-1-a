@@ -27,3 +27,5 @@ jobs:
         run: |
           docker build -t ghcr.io/${{ github.repository }}/projfabsoft:latest ./projfabsoft
           docker push ghcr.io/${{ github.repository }}/projfabsoft:latest
+          docker build -t ghcr.io/${{ github.repository }}/projfabsoft-frontend:latest ./projfabsoft_frontend
+          docker push ghcr.io/${{ github.repository }}/projfabsoft-frontend:latest
