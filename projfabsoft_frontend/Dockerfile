@@ -26,7 +26,7 @@ WORKDIR /usr/share/nginx/html
 COPY --from=build /app/dist/projfabsoft_frontend/browser /usr/share/nginx/html
 
 # Copiar o arquivo environment.runtime.js
-COPY /app/src/assets/environment.runtime.js /usr/share/nginx/html/assets/environment.runtime.js
+COPY src/assets/environment.runtime.js /usr/share/nginx/html/assets/environment.runtime.js
 
 # Substituir o valor da variável apiUrl no runtime
 RUN sed -i "s|http://localhost:8080/api/v1|${API_URL}|g" /usr/share/nginx/html/assets/environment.runtime.js
