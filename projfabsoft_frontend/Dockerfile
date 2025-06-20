@@ -28,11 +28,8 @@ COPY --from=build /app/dist/projfabsoft_frontend/browser /usr/share/nginx/html
 # Copiar o arquivo environment.runtime.js
 COPY src/assets/environment.runtime.js /usr/share/nginx/html/assets/environment.runtime.js
 
-# Substituir o valor da variável apiUrl no runtime
-RUN sed -i "s|http://localhost:8080/api/v1|${API_URL}|g" /usr/share/nginx/html/assets/environment.runtime.js
-
 # Expose port 80
 EXPOSE 80
 
-# Start Nginx server
-CMD ["nginx", "-g", "daemon off;"]
+# Start Nginx server and execute sed command
+CMD ["/bin/sh", "-c", "sed -i 's|http://localhost:8080/api/v1|${API_URL}|g' /usr/share/nginx/html/assets/environment.runtime.js && nginx -g 'daemon off;'"]
