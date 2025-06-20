@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Build the Angular application
-RUN npm run build --prod
+RUN ng build
 
 # Stage 2: Production
 FROM nginx:alpine AS production
