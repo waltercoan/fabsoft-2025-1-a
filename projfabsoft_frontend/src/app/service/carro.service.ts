@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CarroService {
-  apiUrl = (window as any).env.apiUrl;
-  apiURL = this.apiUrl + "/carros";
+  apiBase = (window as any).env.apiUrl;
+  apiURL = (this.apiBase !== null ? this.apiBase : 'http://localhost:8080/api/v1/carros') + "/carros";
 
   constructor(private http:HttpClient) { }
 

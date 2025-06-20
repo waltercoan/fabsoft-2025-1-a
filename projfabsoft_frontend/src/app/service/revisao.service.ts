@@ -8,8 +8,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RevisaoService {
-  apiUrl = (window as any).env.apiUrl;
-  apiURL = this.apiUrl + "/revisoes";
+  apiBase = (window as any).env.apiUrl;
+  apiURL = (this.apiBase !== null ? this.apiBase : 'http://localhost:8080/api/v1/carros') + "/revisoes";
 
   constructor(private http:HttpClient) { }
 
