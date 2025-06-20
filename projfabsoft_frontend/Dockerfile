@@ -32,4 +32,4 @@ COPY src/assets/environment.runtime.js /usr/share/nginx/html/assets/environment.
 EXPOSE 80
 
 # Start Nginx server and execute sed command
-CMD ["/bin/sh", "-c", "sed -i 's|http://localhost:8080/api/v1|'"$API_URL"'|g' /usr/share/nginx/html/assets/environment.runtime.js && nginx -g 'daemon off;'"]
+CMD ["/bin/sh", "-c", "sed -i 's|http://localhost:8080/api/v1|'\"$API_URL\"'|g' /usr/share/nginx/html/assets/environment.runtime.js && nginx -g 'daemon off;'"]
