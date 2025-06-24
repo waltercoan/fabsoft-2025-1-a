@@ -30,6 +30,9 @@ COPY --from=build /app/dist/projfabsoft_frontend/browser /usr/share/nginx/html
 # Copiar o arquivo environment.runtime.js
 COPY src/assets/environment.runtime.js /usr/share/nginx/html/assets/environment.runtime.js
 
+# Custom Nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 # Expose port 80
 EXPOSE 80
 
