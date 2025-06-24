@@ -5,5 +5,9 @@ export class Carro {
     marca: string;
     modelo: string;
     placa: string;
-    cliente: Cliente
+    cliente: Cliente;
+    foto: string; //ALTERAR AQUI
+    arquivoFoto: string; //ALTERAR AQUI
+    mimeType: string; //ALTERAR AQUI
+
 }

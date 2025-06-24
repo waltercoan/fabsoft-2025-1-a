@@ -19,6 +19,11 @@
                 <input type="text" [(ngModel)]="carro.placa" 
                 class="form-control" id="txtPlaca">
             </div>
+            
+            <div class="form-group">
+                <label for="fileImagem">Imagem</label>
+                <input type="file" (change)="onFileSelected($event)" class="form-control" id="fileImagem" accept="image/*">
+            </div>
 
             <div class="form-group">
                 <label for="txtCliente">Cliente</label>
