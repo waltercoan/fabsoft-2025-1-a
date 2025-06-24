@@ -8,7 +8,7 @@ export class ChatService {
   private messageCallback!: (message: string) => void;
 
   apiBase = (window as any).env.apiUrl.replace('/api/v1','').replace('https://','').replace('http://','');
-  apiURL = (this.apiBase !== null ? ('ws://' + this.apiBase) : 'ws://localhost:8080') + "/ws/chat";
+  apiURL = (this.apiBase !== null ? ('wss://' + this.apiBase) : 'ws://localhost:8080') + "/ws/chat";
   
   constructor() { }
 
